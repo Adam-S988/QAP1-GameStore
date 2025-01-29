@@ -9,4 +9,10 @@ public class GameStoreTest {
         int b = 2;
         Assertions.assertTrue(a < b);
     }
+
+    @Test
+    public void gameTitle() {
+        String c = "Tetris";
+        Assertions.assertNotNull(c);
+    }
 }
