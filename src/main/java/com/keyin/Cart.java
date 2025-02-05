@@ -14,7 +14,7 @@ public class Cart {
     public void addGame(Game game, int quantity) {
         int storeQuantity = store.getQuantity(game);
 
-        if (quantity > storeQuantity) {
+        if (quantity >= storeQuantity) {
             System.out.println("Error: Cannot add more than available stock (" + storeQuantity + ").");
             return;
         }
