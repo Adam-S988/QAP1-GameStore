@@ -18,6 +18,16 @@ public class GameStore {
         quantities.add(quantity);
     }
 
+    public Game getGameById(int gameId) {
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getGameId() == gameId) {
+                return inventory.get(i);
+            }
+        }
+        return null; // Return null if game not found
+    }
+
+
     public List<Game> browseGames() {
         return inventory;
     }
