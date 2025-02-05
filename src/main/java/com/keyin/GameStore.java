@@ -1,23 +1,33 @@
 package com.keyin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameStore {
-    private Game game;
-    private int quantity;
+    private List<Game> inventory = new ArrayList<>();
+    private List<Integer> quantities = new ArrayList<>();
 
-    public GameStore (Game game, int quantity) {
-        this.game = game;
-        this.quantity = quantity;
+    public void addGameToStore(Game game, int quantity) {
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getGameId() == game.getGameId()) {
+                quantities.set(i, quantities.get(i) + quantity);
+                return;
+            }
+        }
+        inventory.add(game);
+        quantities.add(quantity);
     }
 
-    public Game getGame() {
-        return game;
+    public List<Game> browseGames() {
+        return inventory;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public int getQuantity(Game game) {
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getGameId() == game.getGameId()) {
+                return quantities.get(i);
+            }
+        }
+        return 0;
     }
 }

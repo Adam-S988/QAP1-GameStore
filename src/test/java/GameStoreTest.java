@@ -4,15 +4,22 @@ import org.junit.jupiter.api.Test;
 public class GameStoreTest {
 
     @Test
-    public void gamePriceTest() {
-        int a = 1;
-        int b = 2;
-        Assertions.assertTrue(a < b);
+    public void gameQuantityTest() {
+        int tetrisStoreQuantity = 2;
+        int tetrisCartQuantity = 1;
+        Assertions.assertTrue(tetrisStoreQuantity >= tetrisCartQuantity);
+    }
+
+    @Test
+    public void gameQuantityTestErrorMessage() {
+        int tetrisStoreQuantity = 2;
+        int tetrisCartQuantity = 1;
+        Assertions.assertTrue(tetrisStoreQuantity >= tetrisCartQuantity);
     }
 
     @Test
     public void gameTitle() {
-        String c = "Tetris";
-        Assertions.assertNotNull(c);
+        String gameTitle = "Tetris";
+        Assertions.assertNotNull(gameTitle);
     }
 }
