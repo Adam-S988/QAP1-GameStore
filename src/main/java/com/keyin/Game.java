@@ -4,11 +4,13 @@ public class Game {
     private int gameId;
     private String gameTitle;
     private double gamePrice;
+    private int gameQuantity;
 
-    public Game(int gameId, String gameTitle, double gamePrice) {
+    public Game(int gameId, String gameTitle, double gamePrice, int gameQuantity) {
         this.gameId = gameId;
         this.gameTitle = gameTitle;
         this.gamePrice = gamePrice;
+        this.gameQuantity = gameQuantity;
     }
 
     public int getGameId() {
@@ -31,7 +33,25 @@ public class Game {
         return gamePrice;
     }
 
+    public int getGameQuantity() {
+        return gameQuantity;
+    }
+
+    public void setGameQuantity(int gameQuantity) {
+        this.gameQuantity = gameQuantity;
+    }
+
     public void setGamePrice(double gamePrice) {
         this.gamePrice = gamePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId=" + gameId +
+                ", gameTitle='" + gameTitle + '\'' +
+                ", gamePrice=" + gamePrice +
+                ", gameQuantity=" + gameQuantity +
+                '}';
     }
 }

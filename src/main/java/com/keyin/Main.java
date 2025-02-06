@@ -4,17 +4,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        Game tetris = new Game(1, "Tetris", 39.99);
-        Game mario = new Game(2, "Super Mario", 59.99);
+        Game tetris = new Game(1, "Tetris", 39.99, 2);
+        Game mario = new Game(2, "Super Mario", 59.99, 1);
 
         GameStore store = new GameStore();
-        store.addGameToStore(tetris, 2);
-        store.addGameToStore(mario, 1);
-
-        Cart cart = new Cart(store); // ✅ Create a Cart instance
+        store.addGameToStore(tetris);
+        store.addGameToStore(mario);
+        Cart cart = new Cart(store);
 
         while (true) {
             System.out.println("\n1. View the Game Store");
@@ -33,7 +32,7 @@ public class Main {
                         System.out.println("Game ID: " + game.getGameId() +
                                 ", Title: " + game.getGameTitle() +
                                 ", Price: $" + game.getGamePrice() +
-                                ", Quantity: " + store.getQuantity(game));
+                                ", Quantity: " + game.getGameQuantity());
                     }
                 }
                 case 2 -> {
@@ -44,11 +43,11 @@ public class Main {
                     System.out.print("Enter Game price: ");
                     double gamePrice = scanner.nextDouble();
                     System.out.print("Enter quantity: ");
-                    int quantity = scanner.nextInt();
+                    int gameQuantity = scanner.nextInt();
 
-                    Game newGame = new Game(gameId, gameTitle, gamePrice);
-                    store.addGameToStore(newGame, quantity);
-                    System.out.println(gameTitle + " added to store with quantity " + quantity);
+                    Game newGame = new Game(gameId, gameTitle, gamePrice, gameQuantity);
+                    store.addGameToStore(newGame);
+                    System.out.println(gameTitle + " added to store with quantity " + gameQuantity);
                 }
                 case 3 -> {
                     System.out.print("Enter game ID: ");
@@ -59,6 +58,11 @@ public class Main {
                     Game selectedGame = store.getGameById(gameId);
                     if (selectedGame != null) {
                         cart.addGame(selectedGame, quantity);
+                        System.out.println("Game added to cart (x" + selectedGame.getGameTitle() + ").");
+                        System.out.println("\nGames in Cart:");
+                        cart.printGamesInCart();
+                        double total = cart.calculateTotal();
+                        System.out.println("\nTotal Price: $" + total);
                     } else {
                         System.out.println("Game not found in store.");
                     }
