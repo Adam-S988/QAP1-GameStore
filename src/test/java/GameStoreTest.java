@@ -1,3 +1,6 @@
+import com.keyin.Cart;
+import com.keyin.Game;
+import com.keyin.GameStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,23 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class GameStoreTest {
 
     @Test
-    public void gameQuantityTest() {
-        int tetrisStoreQuantity = 2;
-        int tetrisCartQuantity = 1;
-        Assertions.assertTrue(tetrisStoreQuantity >= tetrisCartQuantity);
-    }
+    public void gameQuantityTest() throws Exception {
+        GameStore store = new GameStore();
+       Cart cart = new Cart(store);
 
-    @Test
-    public void gameQuantityTestErrorMessage() {
-        int tetrisStoreQuantity = 2;
-        int tetrisCartQuantity = 4;
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            if (tetrisCartQuantity > tetrisStoreQuantity) {
-                throw new IllegalArgumentException("Error: Cannot add more than available stock (" + tetrisStoreQuantity + ").");
-            }
+       Game game = new Game(1,"Bo6",39.99,10);
+
+       Exception exception = assertThrows(Exception.class, () ->  {
+            cart.addGame(game,11);
         });
-
-        assertEquals("Error: Cannot add more than available stock (2).", exception.getMessage());
+        assertEquals("Cannot add more than available stock.", exception.getMessage());
     }
 
     @Test

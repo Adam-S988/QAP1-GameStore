@@ -1,35 +1,46 @@
 package com.keyin;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Cart {
-    private Map<Game, Integer> items = new HashMap<>();
+    private List<Game> items = new ArrayList<>();
     private GameStore store;
 
     public Cart (GameStore store) {
         this.store = store;
     }
 
-    public void addGame(Game game, int quantity) {
-        int storeQuantity = store.getQuantity(game);
-
-        if (quantity >= storeQuantity) {
-            System.out.println("Error: Cannot add more than available stock (" + storeQuantity + ").");
-            return;
+    public void addGame(Game game, int quantity) throws Exception {
+        if (quantity > game.getGameQuantity()) {
+            System.out.println("Error: Cannot add more than available stock (" + game.getGameQuantity() + ").");
+            throw new Exception("Cannot add more than available stock.");
         }
-        items.put(game, items.getOrDefault(game, 0) + quantity);
+        for (int i = 1; i <= quantity; i++) {
+            items.add(game);
+        }
     }
 
     public double calculateTotal() {
         double total = 0;
-        for (Map.Entry<Game, Integer> entry : items.entrySet()) {
-            total += entry.getKey().getGamePrice() * entry.getValue();
+        for (Game item: items) {
+            total += item.getGamePrice();
         }
         return total;
     }
 
-    public Map<Game, Integer> getItems() {
+    public void printGamesInCart() {
+        for (Game item: items) {
+            System.out.println(item);
+        }
+    }
+
+    public List<Game> getItems() {
         return items;
+    }
+
+    public void setItems(List<Game> items) {
+        this.items = items;
     }
 }
