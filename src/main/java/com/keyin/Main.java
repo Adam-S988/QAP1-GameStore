@@ -1,10 +1,9 @@
 package com.keyin;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         Game tetris = new Game(1, "Tetris", 39.99, 2);
@@ -59,7 +58,7 @@ public class Main {
                     if (selectedGame != null) {
                         try {
                             cart.addGame(selectedGame, quantity);
-                            System.out.println("Game added to cart (x" + quantity + " of " + selectedGame.getGameTitle() + ").");
+                            System.out.println("\nAdded to cart: " + quantity + " x " + selectedGame.getGameTitle());
                             System.out.println("\nGames in Cart:");
                             cart.printGamesInCart();
                             double total = cart.calculateTotal();

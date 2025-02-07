@@ -13,7 +13,6 @@ public class Cart {
 
     public void addGame(Game game, int quantity) throws Exception {
         if (quantity > game.getGameQuantity()) {
-            System.out.println("Error: Cannot add more than available stock (" + game.getGameQuantity() + ").");
             throw new Exception("Cannot add more than available stock.");
         }
         for (int i = 1; i <= quantity; i++) {
@@ -30,16 +29,23 @@ public class Cart {
     }
 
     public void printGamesInCart() {
-        for (Game item: items) {
-            System.out.println(item);
+
+        List<Game> countedGames = new ArrayList<>();
+
+        for (Game item : items) {
+            int count = 0;
+
+            for (Game newItem : items) {
+                if (newItem.getGameTitle().equals(item.getGameTitle())) {
+                    count++;
+                }
+            }
+
+            if (!countedGames.contains(item)) {
+                System.out.println("Game: " + item.getGameTitle() + ", Quantity: " + count);
+                countedGames.add(item);
+            }
         }
     }
 
-    public List<Game> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Game> items) {
-        this.items = items;
-    }
 }
