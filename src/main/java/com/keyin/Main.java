@@ -59,7 +59,7 @@ public class Main {
                     if (selectedGame != null) {
                         try {
                             cart.addGame(selectedGame, quantity);
-                            System.out.println("Game added to cart (x" + quantity + " of " + selectedGame.getGameTitle() + ").");
+                            System.out.println("\nAdded to cart: " + quantity + " x " + selectedGame.getGameTitle());
                             System.out.println("\nGames in Cart:");
                             cart.printGamesInCart();
                             double total = cart.calculateTotal();
