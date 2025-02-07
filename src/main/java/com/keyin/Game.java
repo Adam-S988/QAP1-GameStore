@@ -17,16 +17,8 @@ public class Game {
         return gameId;
     }
 
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
-    }
-
     public String getGameTitle() {
         return gameTitle;
-    }
-
-    public void setGameTitle(String gameTitle) {
-        this.gameTitle = gameTitle;
     }
 
     public double getGamePrice() {
@@ -35,14 +27,6 @@ public class Game {
 
     public int getGameQuantity() {
         return gameQuantity;
-    }
-
-    public void setGameQuantity(int gameQuantity) {
-        this.gameQuantity = gameQuantity;
-    }
-
-    public void setGamePrice(double gamePrice) {
-        this.gamePrice = gamePrice;
     }
 
     @Override
