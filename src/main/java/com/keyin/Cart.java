@@ -13,7 +13,6 @@ public class Cart {
 
     public void addGame(Game game, int quantity) throws Exception {
         if (quantity > game.getGameQuantity()) {
-            System.out.println("Error: Cannot add more than available stock (" + game.getGameQuantity() + ").");
             throw new Exception("Cannot add more than available stock.");
         }
         for (int i = 1; i <= quantity; i++) {
