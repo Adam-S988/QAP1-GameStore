@@ -1,10 +1,9 @@
 package com.keyin;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         Game tetris = new Game(1, "Tetris", 39.99, 2);
