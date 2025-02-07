@@ -57,12 +57,16 @@ public class Main {
 
                     Game selectedGame = store.getGameById(gameId);
                     if (selectedGame != null) {
-                        cart.addGame(selectedGame, quantity);
-                        System.out.println("Game added to cart (x" + selectedGame.getGameTitle() + ").");
-                        System.out.println("\nGames in Cart:");
-                        cart.printGamesInCart();
-                        double total = cart.calculateTotal();
-                        System.out.println("\nTotal Price: $" + total);
+                        try {
+                            cart.addGame(selectedGame, quantity);
+                            System.out.println("Game added to cart (x" + quantity + " of " + selectedGame.getGameTitle() + ").");
+                            System.out.println("\nGames in Cart:");
+                            cart.printGamesInCart();
+                            double total = cart.calculateTotal();
+                            System.out.println("\nTotal Price: $" + total);
+                        } catch (Exception e) {
+                            System.out.println("Error: " + e.getMessage());
+                        }
                     } else {
                         System.out.println("Game not found in store.");
                     }
@@ -77,23 +81,3 @@ public class Main {
         }
     }
 }
-
-//        System.out.println("Games in Store:");
-//        for (Game game : store.browseGames()) {
-//            System.out.println("Game ID: " + game.getGameId() + ", Title: " + game.getGameTitle() + ", Quantity: " + store.getQuantity(game) + ", Price: $" + game.getGamePrice());
-//        }
-//
-//        Cart cart = new Cart(store);
-//
-//        cart.addGame(tetris, 2);
-//        cart.addGame(mario, 3);
-//
-//        System.out.println("\nGames in Cart:");
-//        for (Map.Entry<Game, Integer> entry : cart.getItems().entrySet()) {
-//            System.out.println(entry.getKey().getGameTitle() + ", Quantity: " + entry.getValue());
-//        }
-//
-//        double total = cart.calculateTotal();
-//        System.out.println("\nTotal Price: $" + total);
-//    }
-//}
